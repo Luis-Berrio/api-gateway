@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  api-gateway:
+    image: luisberrio13/api-gateway
+    hostname: api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - user-service
+    networks:
+      - sic-network
+
+  user-service:
+    image: luisberrio13/user-service
+    hostname: user-service
+    ports:
+      - "8083:8083"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/userdb
+      - SPRING_DATASOURCE_USERNAME=root
+    depends_on:
+      - mysql
+    networks:
+      - sic-network
+
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: userdb
+    networks:
+      - sic-network
+
+networks:
+  sic-network:
+    driver: bridge
