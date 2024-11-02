@@ -38,6 +38,19 @@ services:
     networks:
       - sic-network
 
+  document-service:
+      image: luisberrio13/document-service
+      hostname: documents-service
+      ports:
+        - "8081:8081"
+      environment:
+        - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/documentdb
+        - SPRING_DATASOURCE_USERNAME=root
+      depends_on:
+        - mysql
+      networks:
+        - sic-network
+
   mysql:
     image: mysql:8.0
     ports:
