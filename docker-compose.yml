@@ -3,17 +3,17 @@ version: '3.8'
 services:
 
   front: 
-    image: luisberrio13/sic-frontend:2.0
+    image: luisberrio13/sic-frontend:3.0
     hostname: frontend
     ports:
-      - "80:80"
+      - "4000:4000"
     networks:
       - sic-network
     depends_on:
       - api-gateway
   
   api-gateway:
-    image: luisberrio13/api-gateway
+    image: luisberrio13/api-gateway-1
     hostname: api-gateway
     ports:
       - "8080:8080"
@@ -66,7 +66,7 @@ services:
   mysql:
     image: mysql:8.0
     ports:
-      - "3306:3306"
+      - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ""
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
