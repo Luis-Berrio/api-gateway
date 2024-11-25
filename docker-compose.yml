@@ -1,6 +1,17 @@
 version: '3.8'
 
 services:
+
+  front: 
+    image: luisberrio13/sic-frontend:2.0
+    hostname: frontend
+    ports:
+      - "80:80"
+    networks:
+      - sic-network
+    depends_on:
+      - api-gateway
+  
   api-gateway:
     image: luisberrio13/api-gateway
     hostname: api-gateway
@@ -9,6 +20,7 @@ services:
     depends_on:
       - user-service
       - process-service
+      - document-service
     networks:
       - sic-network
 
