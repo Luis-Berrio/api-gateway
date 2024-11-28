@@ -14,7 +14,7 @@ public class CorsConfig {
     @Bean
     public CorsWebFilter corsWebFilter() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(Arrays.asList("http://localhost:4000", "http://localhost:4200"));  // Permitir el origen del frontend
+        config.setAllowedOrigins(Arrays.asList("http://localhost:4000", "http://localhost:4200", "http://sicweb-elb13-1120957760.us-east-1.elb.amazonaws.com"));  // Permitir el origen del frontend
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
         config.setAllowCredentials(true);  // Habilitar envío de credenciales (opcional)
